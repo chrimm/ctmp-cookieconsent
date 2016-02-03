@@ -1,6 +1,6 @@
 <?php
 /**
- * Adds the Cookie Consent library to WordPress to provide Cookie notificatons 
+ * Adds the Cookie Consent library to WordPress to provide Cookie notificatons
  *
  * @package   CTMP_Cookie_Consent
  * @author    Christoffer T. Timm <kontakt@christoffertimm.de>
@@ -11,7 +11,7 @@
  * @wordpress-plugin
  * Plugin Name:       CTMP Cookie Consent
  * Plugin URI:        https://github.com/chrimm/ctmp-cookieconsent
- * Description:       Moves the Floating Social Bar plugin output from just inside the entry content to just before it.
+ * Description:       Adds the Cookie Consent library to WordPress to provide Cookie notificatons .
  * Version:           0.1.0
  * Author:            Christoffer T. Timm
  * Author URI:        https://github.com/chrimm/ctmp-cookieconsent
@@ -22,7 +22,7 @@
  * GitHub Plugin URI: https://github.com/chrimm/ctmp-cookieconsent
  * GitHub Branch:     master
  *
- *  This program is free software; you can redistribute it and/or modify
+ * 	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License, version 2, as
  *	published by the Free Software Foundation.
  *	This program is distributed in the hope that it will be useful,
