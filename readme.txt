@@ -1,4 +1,4 @@
-=== CTMP Social Sharing ===
+=== CTMP Cookie Consent ===
 Contributors: chrimm
 Tags: cookies, consent, eu, law, legal, notification, accept
 Requires at least: 4.4.1
@@ -9,7 +9,7 @@ This plugin adds the Cookie Consent script to your WordPress site, to provide a 
 
 == Description ==
 
-
+This plugin adds the Cookie Consent script to your WordPress site, to provide a cookie notification.
 
 == Installation ==
 
@@ -23,7 +23,7 @@ This plugin adds the Cookie Consent script to your WordPress site, to provide a 
 
 == Changelog ==
 
-1.0: Initial release
+0.1.0: Development started
 
 == License ==
 
