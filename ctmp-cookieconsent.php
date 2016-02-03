@@ -11,10 +11,10 @@
  * @wordpress-plugin
  * Plugin Name:       CTMP Cookie Consent
  * Plugin URI:        https://github.com/chrimm/ctmp-cookieconsent
- * Description:       Adds the Cookie Consent library to WordPress to provide Cookie notificatons .
+ * Description:       Adds the Cookie Consent library to WordPress to provide Cookie notificatons.
  * Version:           0.1.0
  * Author:            Christoffer T. Timm
- * Author URI:        https://github.com/chrimm/ctmp-cookieconsent
+ * Author URI:        http://christoffertimm.de
  * Text Domain:       ctmpcc
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -68,14 +68,14 @@ class CTMP_Cookie_Consent {
 	 * https://silktide.com/tools/cookie-consent/docs/installation/
 	 */
 	private static $default_configuration = array(
-		"dismiss":      __( 'Got it!', 'ctmpcc' ),
-	    "domain":       $_SERVER['SERVER_NAME'],
-	    "expiryDays":   365,
-	    "message":      __( 'This website uses cookies to ensure you get the best experience on our website', 'ctmpcc' ),
-	    "learnMore":    __( 'More info', 'ctmpcc' ),
-	    "link":         null,
-	    "target":       '_self',
-	    "theme":        'light-top'
+		'dismiss'		=> __( 'Got it!', 'ctmpcc' ),
+	    'domain'		=> $_SERVER['SERVER_NAME'],
+	    'expiryDays'	=> 365,
+	    'message'		=> __( 'This website uses cookies to ensure you get the best experience on our website', 'ctmpcc' ),
+	    'learnMore'		=> __( 'More info', 'ctmpcc' ),
+	    'link'			=> null,
+	    'target'		=> '_self',
+    	'theme'			=> 'light-top'
 	);
 
 	/**
