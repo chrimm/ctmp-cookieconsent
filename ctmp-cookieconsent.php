@@ -87,8 +87,6 @@ class CTMP_Cookie_Consent {
 		} else {
 			add_action( 'wp_enqueue_scripts',		array( &$this, 'ctmpccenqueue_scripts'				),	10	);
 		}
-
-		load_configuration();
 	}
 
 	/**
@@ -322,6 +320,10 @@ class CTMP_Cookie_Consent {
 	/**
 	 * Static default configuration as defined at
 	 * https://silktide.com/tools/cookie-consent/docs/installation/
+	 *
+	 * @return Array of default configuration keys and values
+	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
+	 * @since 0.1.0
 	 */
 	public static function ctmpcc_default_configuration() {
 		return array(
@@ -345,7 +347,7 @@ class CTMP_Cookie_Consent {
  	 */
 	public function ctmpcc_install() {
 		/* Set configuration to default */
-		$this->$configuration = ctmpcc_default_configuration()
+		$this->$configuration = ctmpcc_default_configuration();
 
 		/* Write default settings to DB and register settings */
 		foreach($this->$configuration as $conf_key->$conf_val) {
