@@ -347,7 +347,7 @@ class CTMP_Cookie_Consent {
  	 */
 	public function ctmpcc_install() {
 		/* Set configuration to default */
-		$this->$configuration = ctmpcc_default_configuration();
+		$this->$configuration = CTMP_Cookie_Consent::ctmpcc_default_configuration();
 
 		/* Write default settings to DB and register settings */
 		foreach($this->$configuration as $conf_key->$conf_val) {
