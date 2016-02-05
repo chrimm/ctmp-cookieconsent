@@ -225,7 +225,7 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_dismiss() {
+	function ctmpcc_settings_field_callback_message() {
 		echo '<textarea name="' . CTMPCC_OPTION_PREFIX . 'message">' . get_option( CTMPCC_OPTION_PREFIX.'message' ) . '</textarea>';
 	}
 
