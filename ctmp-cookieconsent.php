@@ -51,7 +51,7 @@ if( ! defined( 'COOKIE_CONSENT_PATH') ) {
 	define( 'COOKIE_CONSENT_PATH', '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/'.COOKIE_CONSENT_VER );
 }
 
-define( 'CTMPCC_OPTION_GROUP', 'ctmp_cookieconsent' )
+define( 'CTMPCC_OPTION_GROUP', 'ctmp_cookieconsent' );
 define( 'CTMPCC_OPTION_PREFIX', CTMPCC_OPTION_GROUP.'_' );
 
 class CTMP_Cookie_Consent {
@@ -323,7 +323,7 @@ class CTMP_Cookie_Consent {
 	 * Static default configuration as defined at
 	 * https://silktide.com/tools/cookie-consent/docs/installation/
 	 */
-	public static function ctmp_default_configuration() {
+	public static function ctmpcc_default_configuration() {
 		return array(
 			'dismiss'		=> __( 'Got it!', 'ctmpcc' ),
 		    'domain'		=> $_SERVER['SERVER_NAME'],
@@ -345,7 +345,7 @@ class CTMP_Cookie_Consent {
  	 */
 	public function ctmpcc_install() {
 		/* Set configuration to default */
-		$this->$configuration = ctmp_default_configuration()
+		$this->$configuration = ctmpcc_default_configuration()
 
 		/* Write default settings to DB and register settings */
 		foreach($this->$configuration as $conf_key->$conf_val) {
