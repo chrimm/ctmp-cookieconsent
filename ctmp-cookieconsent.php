@@ -67,6 +67,27 @@ class CTMP_Cookie_Consent {
 	private $configuration;
 
 	/**
+	 * Static default configuration as defined at
+	 * https://silktide.com/tools/cookie-consent/docs/installation/
+	 *
+	 * @return Array of default configuration keys and values
+	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
+	 * @since 0.1.0
+	 */
+	public static function ctmpcc_default_configuration() {
+		return array(
+			'dismiss'		=> __( 'Got it!', 'ctmpcc' ),
+		    'domain'		=> $_SERVER['SERVER_NAME'],
+		    'expiryDays'	=> 365,
+		    'message'		=> __( 'This website uses cookies to ensure you get the best experience on our website', 'ctmpcc' ),
+		    'learnMore'		=> __( 'More info', 'ctmpcc' ),
+		    'link'			=> null,
+		    'target'		=> '_self',
+	    	'theme'			=> 'light-top'
+		);
+	}
+
+	/**
 	 * This is our Constructor
 	 *
 	 * @return void
@@ -83,6 +104,7 @@ class CTMP_Cookie_Consent {
 			add_action( 'admin_init', 				array( &$this, 'ctmpcc_settings_init' 				)		);
 			add_action( 'admin_menu', 				array( &$this, 'ctmpcc_settings_menu' 				)		);
 		} else {
+			//add_action( 'init',						array( &$this, 'ctmpcc_load_configuration'			)		);
 			add_action( 'wp_enqueue_scripts',		array( &$this, 'ctmpcc_enqueue_scripts'				),	10	);
 		}
 	}
@@ -111,11 +133,11 @@ class CTMP_Cookie_Consent {
 	 */
 	public function ctmpcc_enqueue_scripts() {
 		$in_footer = true;
+		$configuration = self::ctmpcc_get_configuration();
 
 		wp_enqueue_script( 'cookieconsent', 				COOKIE_CONSENT_PATH.'/cookieconsent.min.js', 	array(), 					COOKIE_CONSENT_VER,	$in_footer);
-		wp_register_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMPCC_VER, 		$in_footer);
-		wp_localize_script( 'cookieconsent_configuration', 'cookieconsent_configuration', $this->configuration ); //Pass Object 'cookieconsent_configuration' to configuration.js
-		wp_enqueue_script( 'cookieconsent_configuration' );
+		wp_enqueue_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMPCC_VER, 		$in_footer);
+		wp_localize_script( 'cookieconsent_configuration', 'cookieconsent_configuration', $configuration); //Pass Object 'cookieconsent_configuration' to configuration.js
 	}
 
 	/**
@@ -308,39 +330,37 @@ class CTMP_Cookie_Consent {
 	function ctmpcc_settings_init() {
 		add_settings_section( CTMPCC_OPTION_PREFIX.'section_display', 	__( 'Display Settings', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_section_callback'),  			__FILE__);
 
-		add_settings_field( CTMPCC_OPTION_PREFIX.'message', 		__( 'Cookie Message', 'ctmpcc' ), 									array( &$this, 'ctmpcc_settings_page_field_callback_message'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'dismiss', 		__( 'Dismiss Button Caption', 'ctmpcc' ), 							array( &$this, 'ctmpcc_settings_page_field_callback_dismiss'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'learnMore', 	__( 'Caption of the Learn More Link', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_learnmore'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'link', 			__( 'Target Page of the Learn More Link', 'ctmpcc' ), 				array( &$this, 'ctmpcc_settings_page_field_callback_link'),			__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'target', 		__( 'Open Learn More Link in the Same or New Page?', 'ctmpcc' ), 	array( &$this, 'ctmpcc_settings_page_field_callback_target'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'theme', 		__( 'How to Display the Cookie Notification?', 'ctmpcc' ), 			array( &$this, 'ctmpcc_settings_page_field_callback_theme'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'message', 			__( 'Cookie Message', 'ctmpcc' ), 									array( &$this, 'ctmpcc_settings_page_field_callback_message'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'dismiss', 			__( 'Dismiss Button Caption', 'ctmpcc' ), 							array( &$this, 'ctmpcc_settings_page_field_callback_dismiss'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'learnMore', 			__( 'Caption of the Learn More Link', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_learnmore'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'link', 				__( 'Target Page of the Learn More Link', 'ctmpcc' ), 				array( &$this, 'ctmpcc_settings_page_field_callback_link'),			__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'target', 				__( 'Open Learn More Link in the Same or New Page?', 'ctmpcc' ), 	array( &$this, 'ctmpcc_settings_page_field_callback_target'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'theme', 				__( 'How to Display the Cookie Notification?', 'ctmpcc' ), 			array( &$this, 'ctmpcc_settings_page_field_callback_theme'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
 
 		add_settings_section( CTMPCC_OPTION_PREFIX.'section_advanced', 	__( 'Advanced Settings', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_section_callback'),  			__FILE__);
 
-		add_settings_field( CTMPCC_OPTION_PREFIX.'domain', 		__( '(Sub-)Domain for Opt-out Scope', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_domain'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'expiryDays', 	__( 'Opt-out Expiry Date', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_field_callback_expirydays'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'domain', 				__( '(Sub-)Domain for Opt-out Scope', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_domain'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'expiryDays', 			__( 'Opt-out Expiry Date', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_field_callback_expirydays'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
 	}
 
 	/**
-	 * Static default configuration as defined at
-	 * https://silktide.com/tools/cookie-consent/docs/installation/
+	 * Get the setting values
 	 *
-	 * @return Array of default configuration keys and values
+	 * @return Array of configuration keys and values
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	public static function ctmpcc_default_configuration() {
-		return array(
-			'dismiss'		=> __( 'Got it!', 'ctmpcc' ),
-		    'domain'		=> $_SERVER['SERVER_NAME'],
-		    'expiryDays'	=> 365,
-		    'message'		=> __( 'This website uses cookies to ensure you get the best experience on our website', 'ctmpcc' ),
-		    'learnMore'		=> __( 'More info', 'ctmpcc' ),
-		    'link'			=> null,
-		    'target'		=> '_self',
-	    	'theme'			=> 'light-top'
-		);
-	}
+	 public function ctmpcc_get_configuration() {
+		 /* Set current configuration to default */
+		 $configuration = self::ctmpcc_default_configuration();
+
+		 /* Load settings from DB, leave default values if not found */
+		 foreach($this->configuration as $conf_key => $conf_val) {
+			$configuration[$setting_key] = get_option( CTMPCC_OPTION_PREFIX.$setting_key, $configuration[$setting_key] ); //option_key, default_value
+		 }
+
+		 return $configuration;
+	 }
 
 	/**
  	 * Creates a new WP Option and writes default configuration to DB
