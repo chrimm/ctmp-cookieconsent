@@ -79,13 +79,11 @@ class CTMP_Cookie_Consent {
 
 		register_activation_hook( __FILE__,			array( &$this, 'ctmpcc_install' 					) 		);
 
-		add_action( 'plugins_loaded', 				array( &$this, 'ctmpcc_textdomain'					) 		);
-
 		if( is_admin() ) {
-			add_action( 'admin_enqueue_scripts',	array( &$this, 'ctmpcc_enqueue_admin_scripts'		)		);
+			add_action( 'admin_init', 				array( &$this, 'ctmpcc_settings_init' 				)		);
 			add_action( 'admin_menu', 				array( &$this, 'ctmpcc_settings_menu' 				)		);
 		} else {
-			add_action( 'wp_enqueue_scripts',		array( &$this, 'ctmpccenqueue_scripts'				),	10	);
+			add_action( 'wp_enqueue_scripts',		array( &$this, 'ctmpcc_enqueue_scripts'				),	10	);
 		}
 	}
 
@@ -115,8 +113,8 @@ class CTMP_Cookie_Consent {
 		$in_footer = true;
 
 		wp_enqueue_script( 'cookieconsent', 				COOKIE_CONSENT_PATH.'/cookieconsent.min.js', 	array(), 					COOKIE_CONSENT_VER,	$in_footer);
-		wp_register_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMP_CC_VER, 		$in_footer);
-		wp_localize_script( 'cookieconsent_configuration', 'cookieconsent_configuration', $this->$configuration ); //Pass Object 'cookieconsent_configuration' to configuration.js
+		wp_register_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMPCC_VER, 		$in_footer);
+		wp_localize_script( 'cookieconsent_configuration', 'cookieconsent_configuration', $this->configuration ); //Pass Object 'cookieconsent_configuration' to configuration.js
 		wp_enqueue_script( 'cookieconsent_configuration' );
 	}
 
@@ -130,8 +128,8 @@ class CTMP_Cookie_Consent {
 	function ctmpcc_settings_menu() {
 
 	    add_options_page(
-	    	__( 'Cookie Consent Settings', 'ctmpcc' ),	/* Page Title */
-	    	'Cookie Consent',							/* Menu Title */
+	    	__( 'Cookie Consent', 'ctmpcc' ),			/* Page Title */
+	    	__( 'Cookie Consent', 'ctmpcc' ),			/* Menu Title */
 	    	'manage_options',							/* Capability */
 	    	__FILE__,									/* Menu Slug  */
 	    	array( &$this,'ctmpcc_settings_page' )		/* Function   */
@@ -149,13 +147,14 @@ class CTMP_Cookie_Consent {
 	    ?>
 
 	    <div class="wrap">
+			<h2>Cookie Consent</h2>
 	        <p><?php _e( 'You can edit the display of the cookie notification to your liking' ); ?></p>
 
 	        <form method="post" action="options.php">
 	            <?php
 
 	            /* Output the settings sections */
-	            do_settings_sections( CTMPCC_OPTION_PREFIX.'section' );
+	            do_settings_sections( __FILE__ );
 
 	            /* Output the hidden fields, nonce, etc. */
 	            settings_fields( CTMPCC_OPTION_GROUP );
@@ -190,8 +189,8 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_dismiss() {
-		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'dismiss" value="' . get_option( CTMPCC_OPTION_PREFIX.'dismiss' ) . '" >';
+	function ctmpcc_settings_page_field_callback_dismiss() {
+		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'dismiss" id="' . CTMPCC_OPTION_PREFIX . 'dismiss" value="' . get_option( CTMPCC_OPTION_PREFIX.'dismiss' ) . '" >';
 	}
 
 	/**
@@ -201,8 +200,8 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_domain() {
-		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'domain" value="' . get_option( CTMPCC_OPTION_PREFIX.'domain' ) . '" >';
+	function ctmpcc_settings_page_field_callback_domain() {
+		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'domain" id="' . CTMPCC_OPTION_PREFIX . 'domain" value="' . get_option( CTMPCC_OPTION_PREFIX.'domain' ) . '" >';
 	}
 
 	/**
@@ -213,7 +212,7 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_page_field_callback_expirydays() {
-		echo '<input type="number" name="' . CTMPCC_OPTION_PREFIX . 'expirydays" value="' . get_option( CTMPCC_OPTION_PREFIX.'expirydays' ) . '" >';
+		echo '<input type="number" name="' . CTMPCC_OPTION_PREFIX . 'expiryDays" id="' . CTMPCC_OPTION_PREFIX . 'expiryDays" value="' . get_option( CTMPCC_OPTION_PREFIX.'expiryDays' ) . '" >';
 	}
 
 	/**
@@ -223,8 +222,8 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_message() {
-		echo '<textarea name="' . CTMPCC_OPTION_PREFIX . 'message">' . get_option( CTMPCC_OPTION_PREFIX.'message' ) . '</textarea>';
+	function ctmpcc_settings_page_field_callback_message() {
+		echo '<textarea name="' . CTMPCC_OPTION_PREFIX . 'message" id=="' . CTMPCC_OPTION_PREFIX . 'message">' . get_option( CTMPCC_OPTION_PREFIX.'message' ) . '</textarea>';
 	}
 
 	/**
@@ -234,8 +233,8 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_learnmore() {
-		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'learnmore" value="' . get_option( CTMPCC_OPTION_PREFIX.'learnmore' ) . '" >';
+	function ctmpcc_settings_page_field_callback_learnmore() {
+		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'learnMore" id="' . CTMPCC_OPTION_PREFIX . 'learnMore" value="' . get_option( CTMPCC_OPTION_PREFIX.'learnMore' ) . '" >';
 	}
 
 	/**
@@ -245,8 +244,13 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_link() {
-		echo '<input type="text" name="' . CTMPCC_OPTION_PREFIX . 'link" value="' . get_option( CTMPCC_OPTION_PREFIX.'link' ) . '" >';
+	function ctmpcc_settings_page_field_callback_link() {
+		//echo '<input type="dropdown-pages" name="' . CTMPCC_OPTION_PREFIX . 'link" id="' . CTMPCC_OPTION_PREFIX . 'link" value="' . get_option( CTMPCC_OPTION_PREFIX.'link' ) . '" >';
+		wp_dropdown_pages( array(
+			'name'=>CTMPCC_OPTION_PREFIX . 'link',
+			'show_option_none'=>__( 'Do not add any link', 'ctmpcc' ),
+			'option_none_value'=>null
+		) );
 	}
 
 	/**
@@ -256,11 +260,11 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_target() {
+	function ctmpcc_settings_page_field_callback_target() {
 		$current_value = get_option( CTMPCC_OPTION_PREFIX.'target' );
 
 		?>
-			<select name="<?php echo CTMPCC_OPTION_PREFIX . 'target'; ?>">
+			<select name="<?php echo CTMPCC_OPTION_PREFIX . 'target'; ?>" ="<?php echo CTMPCC_OPTION_PREFIX . 'target'; ?>">
 				<option value="_self"<?php  ( '_self'  == $current_value ) ? ' selected="selected"' : ''; ?>><?php _e( 'Same Page (_self)', 'ctmpcc' ); ?></option>
 				<option value="_blank"<?php ( '_blank' == $current_value ) ? ' selected="selected"' : ''; ?>><?php _e( 'New Page (_blank)', 'ctmpcc' ); ?></option>
 			</select>
@@ -274,7 +278,7 @@ class CTMP_Cookie_Consent {
 	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
 	 * @since 0.1.0
 	 */
-	function ctmpcc_settings_field_callback_theme() {
+	function ctmpcc_settings_page_field_callback_theme() {
 		$available_themes = array(
 			'dark-top'			=> __( 'Dark banner at the top', 		'ctmpcc' ),
 		 	'dark-bottom'		=> __( 'Dark banner at the bottom', 	'ctmpcc' ),
@@ -289,7 +293,7 @@ class CTMP_Cookie_Consent {
 
 		echo '<select name="'. CTMPCC_OPTION_PREFIX . 'theme">';
 		foreach($available_themes as $theme => $theme_description) {
-			echo '<option value="' . $theme . (( $theme  == $current_value ) ? ' selected="selected"' : '') .'>'.$theme_description.'</option>';
+			echo '<option value="' . $theme . '"'. (( $theme  == $current_value ) ? ' selected="selected"' : '') .'>'.$theme_description.'</option>';
 		}
 		echo '</select>';
 	}
@@ -304,17 +308,17 @@ class CTMP_Cookie_Consent {
 	function ctmpcc_settings_init() {
 		add_settings_section( CTMPCC_OPTION_PREFIX.'section_display', 	__( 'Display Settings', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_section_callback'),  			__FILE__);
 
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_message', 		__( 'Cookie Message', 'ctmpcc' ), 									array( &$this, 'ctmpcc_settings_page_field_callback_message'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_dismiss', 		__( 'Dismiss Button Caption', 'ctmpcc' ), 							array( &$this, 'ctmpcc_settings_page_field_callback_dismiss'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_learnmore', 	__( 'Caption of the Learn More Link', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_learnmore'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_link', 			__( 'Target Page of the Learn More Link', 'ctmpcc' ), 				array( &$this, 'ctmpcc_settings_page_field_callback_link'),			__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_target', 		__( 'Open Learn More Link in the Same or New Page?', 'ctmpcc' ), 	array( &$this, 'ctmpcc_settings_page_field_callback_target'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_theme', 		__( 'How to Display the Cookie Notification?', 'ctmpcc' ), 			array( &$this, 'ctmpcc_settings_page_field_callback_theme'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'message', 		__( 'Cookie Message', 'ctmpcc' ), 									array( &$this, 'ctmpcc_settings_page_field_callback_message'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'dismiss', 		__( 'Dismiss Button Caption', 'ctmpcc' ), 							array( &$this, 'ctmpcc_settings_page_field_callback_dismiss'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'learnMore', 	__( 'Caption of the Learn More Link', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_learnmore'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'link', 			__( 'Target Page of the Learn More Link', 'ctmpcc' ), 				array( &$this, 'ctmpcc_settings_page_field_callback_link'),			__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'target', 		__( 'Open Learn More Link in the Same or New Page?', 'ctmpcc' ), 	array( &$this, 'ctmpcc_settings_page_field_callback_target'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'theme', 		__( 'How to Display the Cookie Notification?', 'ctmpcc' ), 			array( &$this, 'ctmpcc_settings_page_field_callback_theme'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_display');
 
 		add_settings_section( CTMPCC_OPTION_PREFIX.'section_advanced', 	__( 'Advanced Settings', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_section_callback'),  			__FILE__);
 
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_domain', 		__( '(Sub-)Domain for Opt-out Scope', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_domain'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'field_expirydays', 	__( 'Opt-out Expiry Date', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_field_callback_expirydays'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'domain', 		__( '(Sub-)Domain for Opt-out Scope', 'ctmpcc' ), 					array( &$this, 'ctmpcc_settings_page_field_callback_domain'), 		__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'expiryDays', 	__( 'Opt-out Expiry Date', 'ctmpcc' ), 								array( &$this, 'ctmpcc_settings_page_field_callback_expirydays'), 	__FILE__, CTMPCC_OPTION_PREFIX.'section_advanced');
 	}
 
 	/**
@@ -347,14 +351,13 @@ class CTMP_Cookie_Consent {
  	 */
 	public function ctmpcc_install() {
 		/* Set configuration to default */
-		$this->$configuration = CTMP_Cookie_Consent::ctmpcc_default_configuration();
+		$this->configuration = self::ctmpcc_default_configuration();
 
 		/* Write default settings to DB and register settings */
-		foreach($this->$configuration as $conf_key->$conf_val) {
+		foreach($this->configuration as $conf_key => $conf_val) {
 			add_option( CTMPCC_OPTION_PREFIX.$conf_key, $conf_val );
 			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$conf_key );
 		}
-
 	}
 }
 
