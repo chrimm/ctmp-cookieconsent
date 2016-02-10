@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CTMP Cookie Consent\n"
-"POT-Creation-Date: 2016-02-10 13:24+0100\n"
-"PO-Revision-Date: 2016-02-10 13:40+0100\n"
+"POT-Creation-Date: 2016-02-10 15:37+0100\n"
+"PO-Revision-Date: 2016-02-10 15:37+0100\n"
 "Last-Translator: Christoffer T. Timm <kontakt@christoffertimm.de>\n"
 "Language-Team: Christoffer T. Timm <kontakt@christoffertimm.de>\n"
 "Language: de_DE\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: ctmp-cookieconsent.php:79
+#: ctmp-cookieconsent.php:80
 msgid "Got it!"
 msgstr "OK"
 
-#: ctmp-cookieconsent.php:82
+#: ctmp-cookieconsent.php:83
 msgid ""
 "This website uses cookies to ensure you get the best experience on our "
 "website"
@@ -33,94 +33,94 @@ msgstr ""
 "bieten zu können. Mit der Nutzung dieser Webseite erklären Sie sich mit der "
 "Verwendung und Speicherung von Cookies einverstanden."
 
-#: ctmp-cookieconsent.php:83
+#: ctmp-cookieconsent.php:84
 msgid "More info"
 msgstr "Weitere Informationen"
 
-#: ctmp-cookieconsent.php:153 ctmp-cookieconsent.php:154
+#: ctmp-cookieconsent.php:154 ctmp-cookieconsent.php:155
 msgid "Cookie Consent"
 msgstr "Cookie Consent"
 
-#: ctmp-cookieconsent.php:173
+#: ctmp-cookieconsent.php:174
 msgid "You can edit the display of the cookie notification to your liking"
 msgstr ""
 "Sie können die Darstellung des Cookies-Hinweises nach Ihren Wünschen "
 "gestalten"
 
-#: ctmp-cookieconsent.php:273
+#: ctmp-cookieconsent.php:334
 msgid "Do not add any link"
 msgstr "Keinen Link anzeigen"
 
-#: ctmp-cookieconsent.php:290
+#: ctmp-cookieconsent.php:362
 msgid "Same Page (_self)"
 msgstr "Gleiche Seite (_self)"
 
-#: ctmp-cookieconsent.php:291
+#: ctmp-cookieconsent.php:363
 msgid "New Page (_blank)"
 msgstr "Neue Seite (_blank)"
 
-#: ctmp-cookieconsent.php:305
+#: ctmp-cookieconsent.php:388
 msgid "Dark banner at the top"
 msgstr "Dunkler Banner am oberen Rand"
 
-#: ctmp-cookieconsent.php:306
+#: ctmp-cookieconsent.php:389
 msgid "Dark banner at the bottom"
 msgstr "Dunkler Banner am unteren Rand"
 
-#: ctmp-cookieconsent.php:307
+#: ctmp-cookieconsent.php:390
 msgid "Dark box floating in the lower right"
 msgstr "Dunkle, schwebende Box in der rechten unteren Ecke"
 
-#: ctmp-cookieconsent.php:308
+#: ctmp-cookieconsent.php:391
 msgid "Light banner at the top"
 msgstr "Heller Banner am oberen Rand"
 
-#: ctmp-cookieconsent.php:309
+#: ctmp-cookieconsent.php:392
 msgid "Light banner at the bottom"
 msgstr "Heller Banner am unteren Rand"
 
-#: ctmp-cookieconsent.php:310
+#: ctmp-cookieconsent.php:393
 msgid "Light box floating in the lower right"
 msgstr "Helle, schwebende Box in der rechten unteren Ecke"
 
-#: ctmp-cookieconsent.php:331
+#: ctmp-cookieconsent.php:439
 msgid "Display Settings"
 msgstr "Einstellungen zur Darstellung"
 
-#: ctmp-cookieconsent.php:333
+#: ctmp-cookieconsent.php:441
 msgid "Cookie Message"
 msgstr "Hinweisnachricht"
 
-#: ctmp-cookieconsent.php:334
+#: ctmp-cookieconsent.php:442
 msgid "Dismiss Button Caption"
 msgstr "Beschriftung des Buttons"
 
-#: ctmp-cookieconsent.php:335
+#: ctmp-cookieconsent.php:443
 msgid "Caption of the Learn More Link"
 msgstr "Beschriftung des Links für weitere Informationen"
 
-#: ctmp-cookieconsent.php:336
+#: ctmp-cookieconsent.php:444
 msgid "Target Page of the Learn More Link"
 msgstr "Zielseite des Links"
 
-#: ctmp-cookieconsent.php:337
+#: ctmp-cookieconsent.php:445
 msgid "Open Learn More Link in the Same or New Page?"
 msgstr "Wo soll die verlinkte Seite geöffnet werden?"
 
-#: ctmp-cookieconsent.php:338
+#: ctmp-cookieconsent.php:446
 msgid "How to Display the Cookie Notification?"
 msgstr "Wie soll der Cookie Hinweis dargestellt werden?"
 
-#: ctmp-cookieconsent.php:340
+#: ctmp-cookieconsent.php:448
 msgid "Advanced Settings"
 msgstr "Erweiterte Einstellungen"
 
-#: ctmp-cookieconsent.php:342
+#: ctmp-cookieconsent.php:450
 msgid "(Sub-)Domain for Opt-out Scope"
 msgstr "(Sub-)Domain für das Opt-out"
 
-#: ctmp-cookieconsent.php:343
-msgid "Opt-out Expiry Date"
+#: ctmp-cookieconsent.php:451
+msgid "Opt-out Expiry Days"
 msgstr "Wie lange soll das Opt-Out gültig bleiben?"
 
 #. Plugin Name of the plugin/theme
@@ -145,3 +145,6 @@ msgstr "Christoffer T. Timm"
 #. Author URI of the plugin/theme
 msgid "http://christoffertimm.de"
 msgstr "http://christoffertimm.de"
+
+#~ msgid "Opt-out Expiry Date"
+#~ msgstr "Wie lange soll das Opt-Out gültig bleiben?"
