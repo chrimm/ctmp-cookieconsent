@@ -202,7 +202,9 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_page_section_callback() {
-		/* Nothing to do here */
+		?>
+			<hr />
+		<?php
 	}
 
 	/**
@@ -392,6 +394,7 @@ class CTMP_Cookie_Consent {
 			//'custom'			=> __( 'Use custom stylesheet', 'ctmp-cookieconsent' ) -- not yet implemented...
 		);
 	}
+
 	/**
 	 * Outputs the 'theme' setting field
 	 *
@@ -400,7 +403,7 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_page_field_callback_theme() {
-		$available_themes = ctmpcc_get_available_themes();
+		$available_themes = self::ctmpcc_get_available_themes();
 
 		$current_value = get_option( CTMPCC_OPTION_PREFIX.'theme' );
 
