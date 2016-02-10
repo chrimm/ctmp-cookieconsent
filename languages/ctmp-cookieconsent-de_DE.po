@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CTMP Cookie Consent\n"
+"POT-Creation-Date: 2016-02-10 13:24+0100\n"
+"PO-Revision-Date: 2016-02-10 13:40+0100\n"
+"Last-Translator: Christoffer T. Timm <kontakt@christoffertimm.de>\n"
+"Language-Team: Christoffer T. Timm <kontakt@christoffertimm.de>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: ctmp-cookieconsent.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: ctmp-cookieconsent.php:79
+msgid "Got it!"
+msgstr "OK"
+
+#: ctmp-cookieconsent.php:82
+msgid ""
+"This website uses cookies to ensure you get the best experience on our "
+"website"
+msgstr ""
+"Diese Webseite verwendet Cookies, um das bestmögliche Besuchererlebnis "
+"bieten zu können. Mit der Nutzung dieser Webseite erklären Sie sich mit der "
+"Verwendung und Speicherung von Cookies einverstanden."
+
+#: ctmp-cookieconsent.php:83
+msgid "More info"
+msgstr "Weitere Informationen"
+
+#: ctmp-cookieconsent.php:153 ctmp-cookieconsent.php:154
+msgid "Cookie Consent"
+msgstr "Cookie Consent"
+
+#: ctmp-cookieconsent.php:173
+msgid "You can edit the display of the cookie notification to your liking"
+msgstr ""
+"Sie können die Darstellung des Cookies-Hinweises nach Ihren Wünschen "
+"gestalten"
+
+#: ctmp-cookieconsent.php:273
+msgid "Do not add any link"
+msgstr "Keinen Link anzeigen"
+
+#: ctmp-cookieconsent.php:290
+msgid "Same Page (_self)"
+msgstr "Gleiche Seite (_self)"
+
+#: ctmp-cookieconsent.php:291
+msgid "New Page (_blank)"
+msgstr "Neue Seite (_blank)"
+
+#: ctmp-cookieconsent.php:305
+msgid "Dark banner at the top"
+msgstr "Dunkler Banner am oberen Rand"
+
+#: ctmp-cookieconsent.php:306
+msgid "Dark banner at the bottom"
+msgstr "Dunkler Banner am unteren Rand"
+
+#: ctmp-cookieconsent.php:307
+msgid "Dark box floating in the lower right"
+msgstr "Dunkle, schwebende Box in der rechten unteren Ecke"
+
+#: ctmp-cookieconsent.php:308
+msgid "Light banner at the top"
+msgstr "Heller Banner am oberen Rand"
+
+#: ctmp-cookieconsent.php:309
+msgid "Light banner at the bottom"
+msgstr "Heller Banner am unteren Rand"
+
+#: ctmp-cookieconsent.php:310
+msgid "Light box floating in the lower right"
+msgstr "Helle, schwebende Box in der rechten unteren Ecke"
+
+#: ctmp-cookieconsent.php:331
+msgid "Display Settings"
+msgstr "Einstellungen zur Darstellung"
+
+#: ctmp-cookieconsent.php:333
+msgid "Cookie Message"
+msgstr "Hinweisnachricht"
+
+#: ctmp-cookieconsent.php:334
+msgid "Dismiss Button Caption"
+msgstr "Beschriftung des Buttons"
+
+#: ctmp-cookieconsent.php:335
+msgid "Caption of the Learn More Link"
+msgstr "Beschriftung des Links für weitere Informationen"
+
+#: ctmp-cookieconsent.php:336
+msgid "Target Page of the Learn More Link"
+msgstr "Zielseite des Links"
+
+#: ctmp-cookieconsent.php:337
+msgid "Open Learn More Link in the Same or New Page?"
+msgstr "Wo soll die verlinkte Seite geöffnet werden?"
+
+#: ctmp-cookieconsent.php:338
+msgid "How to Display the Cookie Notification?"
+msgstr "Wie soll der Cookie Hinweis dargestellt werden?"
+
+#: ctmp-cookieconsent.php:340
+msgid "Advanced Settings"
+msgstr "Erweiterte Einstellungen"
+
+#: ctmp-cookieconsent.php:342
+msgid "(Sub-)Domain for Opt-out Scope"
+msgstr "(Sub-)Domain für das Opt-out"
+
+#: ctmp-cookieconsent.php:343
+msgid "Opt-out Expiry Date"
+msgstr "Wie lange soll das Opt-Out gültig bleiben?"
+
+#. Plugin Name of the plugin/theme
+msgid "CTMP Cookie Consent"
+msgstr "CTMP Cookie Consent"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/chrimm/ctmp-cookieconsent"
+msgstr "https://github.com/chrimm/ctmp-cookieconsent"
+
+#. Description of the plugin/theme
+msgid ""
+"Adds the Cookie Consent library to WordPress to provide Cookie notificatons."
+msgstr ""
+"Fügt die Cookie Consent Bibliothek zu WordPress hinzu, um Cookie Hinweise "
+"anzuzeigen"
+
+#. Author of the plugin/theme
+msgid "Christoffer T. Timm"
+msgstr "Christoffer T. Timm"
+
+#. Author URI of the plugin/theme
+msgid "http://christoffertimm.de"
+msgstr "http://christoffertimm.de"
