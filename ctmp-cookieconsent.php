@@ -436,7 +436,7 @@ class CTMP_Cookie_Consent {
 	 */
 	function ctmpcc_settings_init() {
 		foreach( array_keys(self::ctmpcc_default_configuration()) as $setting_key ) {
-			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$setting_key, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$setting_key ) );
+			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$setting_key/*, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$setting_key )*/ );
 		}
 
 		add_settings_section( CTMPCC_OPTION_PREFIX.'section_display', 	__( 'Display Settings', 'ctmp-cookieconsent' ), 								array( &$this, 'ctmpcc_settings_page_section_callback' ),  			CTMPCC_OPTION_GROUP);
