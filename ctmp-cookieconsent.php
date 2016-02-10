@@ -105,7 +105,6 @@ class CTMP_Cookie_Consent {
 			add_action( 'admin_init', 				array( &$this, 'ctmpcc_settings_init' 				)		);
 			add_action( 'admin_menu', 				array( &$this, 'ctmpcc_settings_menu' 				)		);
 		} else {
-			//add_action( 'init',						array( &$this, 'ctmpcc_load_configuration'			)		);
 			add_action( 'wp_enqueue_scripts',		array( &$this, 'ctmpcc_enqueue_scripts'				),	10	);
 		}
 	}
@@ -436,19 +435,23 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_init() {
-		add_settings_section( CTMPCC_OPTION_PREFIX.'section_display', 	__( 'Display Settings', 'ctmp-cookieconsent' ), 								array( &$this, 'ctmpcc_settings_page_section_callback'),  			CTMPCC_OPTION_GROUP);
+		foreach( array_keys(self::ctmpcc_default_configuration() as $setting_key ) {
+			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$setting_key, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$setting_key ) );
+		}
 
-		add_settings_field( CTMPCC_OPTION_PREFIX.'message', 			__( 'Cookie Message', 'ctmp-cookieconsent' ), 									array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'message'), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'dismiss', 			__( 'Dismiss Button Caption', 'ctmp-cookieconsent' ), 							array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'dismiss'), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'learnMore', 			__( 'Caption of the Learn More Link', 'ctmp-cookieconsent' ), 					array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'learnMore'), 	CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'link', 				__( 'Target Page of the Learn More Link', 'ctmp-cookieconsent' ), 				array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'link'),			CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'target', 				__( 'Open Learn More Link in the Same or New Page?', 'ctmp-cookieconsent' ), 	array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'target'), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'theme', 				__( 'How to Display the Cookie Notification?', 'ctmp-cookieconsent' ), 			array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'theme'), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_section( CTMPCC_OPTION_PREFIX.'section_display', 	__( 'Display Settings', 'ctmp-cookieconsent' ), 								array( &$this, 'ctmpcc_settings_page_section_callback' ),  			CTMPCC_OPTION_GROUP);
 
-		add_settings_section( CTMPCC_OPTION_PREFIX.'section_advanced', 	__( 'Advanced Settings', 'ctmp-cookieconsent' ), 								array( &$this, 'ctmpcc_settings_page_section_callback'),  			CTMPCC_OPTION_GROUP);
+		add_settings_field( CTMPCC_OPTION_PREFIX.'message', 			__( 'Cookie Message', 'ctmp-cookieconsent' ), 									array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'message' ), 	CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'dismiss', 			__( 'Dismiss Button Caption', 'ctmp-cookieconsent' ), 							array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'dismiss' ), 	CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'learnMore', 			__( 'Caption of the Learn More Link', 'ctmp-cookieconsent' ), 					array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'learnMore' ), 	CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'link', 				__( 'Target Page of the Learn More Link', 'ctmp-cookieconsent' ), 				array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'link' ),		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'target', 				__( 'Open Learn More Link in the Same or New Page?', 'ctmp-cookieconsent' ), 	array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'target' ), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'theme', 				__( 'How to Display the Cookie Notification?', 'ctmp-cookieconsent' ), 			array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'theme' ), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_display');
 
-		add_settings_field( CTMPCC_OPTION_PREFIX.'domain', 				__( '(Sub-)Domain for Opt-out Scope', 'ctmp-cookieconsent' ), 					array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'domain'), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_advanced');
-		add_settings_field( CTMPCC_OPTION_PREFIX.'expiryDays', 			__( 'Opt-out Expiry Days', 'ctmp-cookieconsent' ), 								array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'expiryDays'), 	CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_advanced');
+		add_settings_section( CTMPCC_OPTION_PREFIX.'section_advanced', 	__( 'Advanced Settings', 'ctmp-cookieconsent' ), 								array( &$this, 'ctmpcc_settings_page_section_callback' ),  			CTMPCC_OPTION_GROUP);
+
+		add_settings_field( CTMPCC_OPTION_PREFIX.'domain', 				__( '(Sub-)Domain for Opt-out Scope', 'ctmp-cookieconsent' ), 					array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'domain' ), 		CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_advanced');
+		add_settings_field( CTMPCC_OPTION_PREFIX.'expiryDays', 			__( 'Opt-out Expiry Days', 'ctmp-cookieconsent' ), 								array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.'expiryDays' ), 	CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.'section_advanced');
 	}
 
 	/**
@@ -484,7 +487,6 @@ class CTMP_Cookie_Consent {
 		/* Write default settings to DB and register settings */
 		foreach($this->configuration as $conf_key => $conf_val) {
 			add_option( CTMPCC_OPTION_PREFIX.$conf_key, $conf_val );
-			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$conf_key, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$conf_key) );
 		}
 	}
 }
