@@ -435,7 +435,7 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_init() {
-		foreach( array_keys(self::ctmpcc_default_configuration() as $setting_key ) {
+		foreach( array_keys(self::ctmpcc_default_configuration()) as $setting_key ) {
 			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$setting_key, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$setting_key ) );
 		}
 
