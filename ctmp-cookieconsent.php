@@ -40,7 +40,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if( ! defined( 'CTMPCC_VER' ) ) {
-	define( 'CTMPCC_VER', '0.1.0' );
+	define( 'CTMPCC_VER', '0.9.0' );
 }
 
 if( ! defined( 'COOKIE_CONSENT_VER') ) {

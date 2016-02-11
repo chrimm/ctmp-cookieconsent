@@ -23,7 +23,8 @@ This plugin adds the Cookie Consent script to your WordPress site, to provide a 
 
 == Changelog ==
 
-0.1.0: Development started
+* 0.9.0: Public Beta Release
+* 0.1.0: Development started
 
 == License ==
 
