@@ -135,7 +135,7 @@ class CTMP_Cookie_Consent {
 		$in_footer = true;
 		$configuration = self::ctmpcc_get_configuration();
 
-		//$configuration['link'] = get_permalink( $configuration['link'], true );
+		$configuration['link'] = get_permalink( $configuration['link'] );
 
 		wp_enqueue_script( 'cookieconsent', 				COOKIE_CONSENT_PATH.'/cookieconsent.min.js', 	array(), 					COOKIE_CONSENT_VER,	$in_footer);
 		wp_enqueue_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMPCC_VER, 		$in_footer);
