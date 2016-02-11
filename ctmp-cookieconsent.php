@@ -135,6 +135,8 @@ class CTMP_Cookie_Consent {
 		$in_footer = true;
 		$configuration = self::ctmpcc_get_configuration();
 
+		//$configuration['link'] = get_permalink( $configuration['link'], true );
+
 		wp_enqueue_script( 'cookieconsent', 				COOKIE_CONSENT_PATH.'/cookieconsent.min.js', 	array(), 					COOKIE_CONSENT_VER,	$in_footer);
 		wp_enqueue_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMPCC_VER, 		$in_footer);
 		wp_localize_script( 'cookieconsent_configuration', 'cookieconsent_configuration', $configuration); //Pass Object 'cookieconsent_configuration' to configuration.js
@@ -327,11 +329,11 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_page_field_callback_link() {
-		//echo '<input type="dropdown-pages" name="' . CTMPCC_OPTION_PREFIX . 'link" id="' . CTMPCC_OPTION_PREFIX . 'link" value="' . get_option( CTMPCC_OPTION_PREFIX.'link' ) . '" >';
 		wp_dropdown_pages( array(
-			'name'=>CTMPCC_OPTION_PREFIX . 'link',
-			'show_option_none'=>__( 'Do not add any link', 'ctmp-cookieconsent' ),
-			'option_none_value'=>null
+			'name'				=> CTMPCC_OPTION_PREFIX . 'link',
+			'show_option_none'	=> __( 'Do not add any link', 'ctmp-cookieconsent' ),
+			'option_none_value'	=> null,
+			'selected'			=> get_option( CTMPCC_OPTION_PREFIX.'link' )
 		) );
 	}
 
@@ -436,7 +438,7 @@ class CTMP_Cookie_Consent {
 	 */
 	function ctmpcc_settings_init() {
 		foreach( array_keys(self::ctmpcc_default_configuration()) as $setting_key ) {
-			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$setting_key/*, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$setting_key )*/ );
+			register_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.$setting_key, array( &$this, CTMPCC_OPTION_FIELD_CALLBACK_PREFIX.$setting_key.'_sanitize' ) );
 		}
 
 		add_settings_section( CTMPCC_OPTION_PREFIX.'section_display', 	__( 'Display Settings', 'ctmp-cookieconsent' ), 								array( &$this, 'ctmpcc_settings_page_section_callback' ),  			CTMPCC_OPTION_GROUP);
