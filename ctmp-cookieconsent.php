@@ -468,7 +468,7 @@ class CTMP_Cookie_Consent {
 		 $configuration = self::ctmpcc_default_configuration();
 
 		 /* Load settings from DB, leave default values if not found */
-		 foreach(array_keys($configuration) as $conf_key) {
+		 foreach(array_keys($configuration) as $setting_key) {
 			$configuration[$setting_key] = get_option( CTMPCC_OPTION_PREFIX.$setting_key, $configuration[$setting_key] ); //option_key, default_value
 		 }
 
