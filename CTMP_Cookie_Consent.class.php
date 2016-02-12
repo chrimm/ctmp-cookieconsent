@@ -53,8 +53,7 @@ class CTMP_Cookie_Consent {
 
 		load_plugin_textdomain( 'ctmp-cookieconsent', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		register_activation_hook(     __FILE__,		array( &$this, 'ctmpcc_install' 		) 		);
-        register_deactivation_hook(   __FILE__,		array( &$this, 'ctmpcc_deactivate' 		) 		);
+
 
 		if( is_admin() ) {
 			add_action( 'admin_init', 				array( &$this, 'ctmpcc_settings_init' 	)		);
@@ -429,38 +428,4 @@ class CTMP_Cookie_Consent {
 
 		 return $configuration;
 	 }
-
-	/**
- 	 * Creates a new WP Option and writes default configuration to DB
-	 *
-	 * @return void
-	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
-	 * @since 0.1.0
- 	 */
-	public function ctmpcc_install() {
-		/* Set configuration to default */
-		$this->configuration = self::ctmpcc_default_configuration();
-
-		/* Write default settings to DB and register settings */
-		foreach($this->configuration as $conf_key => $conf_val) {
-			add_option( CTMPCC_OPTION_PREFIX.$conf_key, $conf_val );
-		}
-	}
-
-    /**
- 	 * Unregisters all settings
-	 *
-	 * @return void
-	 * @author Christoffer T. Timm <kontakt@christoffertimm.de>
-	 * @since 0.9.0
- 	 */
-	public function ctmpcc_deactivate() {
-		/* Fetch all setting keys */
-		$setting_keys = array_keys( self::ctmpcc_default_configuration() );
-
-		/* Unregister each settings */
-		foreach( $setting_keys as $setting_key ) {
-			unregister_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.setting_key );
-		}
-	}
 }

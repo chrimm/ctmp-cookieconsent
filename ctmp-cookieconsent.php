@@ -12,7 +12,7 @@
  * Plugin Name:       CTMP Cookie Consent
  * Plugin URI:        https://github.com/chrimm/ctmp-cookieconsent
  * Description:       Adds the Cookie Consent library to WordPress to provide Cookie notificatons.
- * Version:           0.1.0
+ * Version:           0.9.2
  * Author:            Christoffer T. Timm
  * Author URI:        http://christoffertimm.de
  * Text Domain:       ctmp-cookieconsent
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if( ! defined( 'CTMPCC_VER' ) ) {
-	define( 'CTMPCC_VER', '0.9.0' );
+	define( 'CTMPCC_VER', '0.9.2' );
 }
 
 if( ! defined( 'COOKIE_CONSENT_VER') ) {
@@ -51,9 +51,51 @@ if( ! defined( 'COOKIE_CONSENT_PATH') ) {
 	define( 'COOKIE_CONSENT_PATH', '//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/'.COOKIE_CONSENT_VER );
 }
 
-/* Bootstrap */
+/*
+ * Bootstrap
+ */
 
 require_once dirname(__FILE__).'/CTMP_Cookie_Consent.class.php';
+
+/*
+ * Activation Hooks *must* be registered and defined in main file!
+ */
+register_activation_hook(   __FILE__, 'ctmpcc_install' 	 );
+register_deactivation_hook( __FILE__, 'ctmpcc_deactivate');
+
+/**
+ * Creates a new WP Option and writes default configuration to DB
+ *
+ * @return void
+ * @author Christoffer T. Timm <kontakt@christoffertimm.de>
+ * @since 0.1.0
+ */
+function ctmpcc_install() {
+	/* Set configuration to default */
+	$default_configuration = CTMP_Cookie_Consent::ctmpcc_default_configuration();
+
+	/* Write default settings to DB and register settings */
+	foreach($default_configuration as $conf_key => $conf_val) {
+		add_option( CTMPCC_OPTION_PREFIX.$conf_key, $conf_val );
+	}
+}
+
+/**
+ * Unregisters all settings
+ *
+ * @return void
+ * @author Christoffer T. Timm <kontakt@christoffertimm.de>
+ * @since 0.9.1
+ */
+function ctmpcc_deactivate() {
+	/* Fetch all setting keys */
+	$setting_keys = array_keys( CTMP_Cookie_Consent::ctmpcc_default_configuration() );
+
+	/* Unregister each settings */
+	foreach( $setting_keys as $setting_key ) {
+		unregister_setting( CTMPCC_OPTION_GROUP, CTMPCC_OPTION_PREFIX.setting_key );
+	}
+}
 
 /* Instantiate our Class */
 $CTMP_Cookie_Consent = CTMP_Cookie_Consent::ctmpcc_get_instance();
