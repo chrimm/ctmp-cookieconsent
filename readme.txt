@@ -30,6 +30,7 @@ See https://codex.wordpress.org/Child_Themes for further information.
 
 == Changelog ==
 
+* 0.9.4: Fixed custom stylesheet example and language files
 * 0.9.3: Added support for custom stylesheet
 * 0.9.2: Fixed activation hook
 * 0.9.1: Outsourced Class and fixed Uninstall script
