@@ -17,6 +17,13 @@ This plugin adds the Cookie Consent script to your WordPress site, to provide a 
 2. Activate the plugin at the plugin administration page
 3. Open the plugin configuration page, which is located under Settings -> CTMP Cookie Consent and customize settings like buttons and colors.
 
+If you want to use a custom stylesheet, you'll find an example in the 'examples' folder. Your are free to edit it to your liking.
+Place it then in the following directory of your theme:
+/wp-content/<themename>/plugins/ctmp-cookieconsent/ctmp-cookieconsent.css
+
+If your theme is likely to be updated, you might want to use a child theme.
+See https://codex.wordpress.org/Child_Themes for further information.
+
 == Frequently Asked Questions ==
 
 (Nothing asked yet.)
