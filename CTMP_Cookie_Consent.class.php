@@ -96,11 +96,11 @@ class CTMP_Cookie_Consent {
          * When custom theme is selected, check if stylesheet file exists.
          * If not, use default theme.
          */
-        if( configuration['theme'] == "__custom" ) {
+        if( $configuration['theme'] == "__custom" ) {
             if( file_exists(get_template_directory().CTMPCC_CUSTOM_STYLESHEET_LOCATION) ) {
-                configuration['theme'] = get_template_directory_uri().CTMPCC_CUSTOM_STYLESHEET_LOCATION;
+                $configuration['theme'] = get_template_directory_uri().CTMPCC_CUSTOM_STYLESHEET_LOCATION;
             } else {
-                configuration['theme'] = self::ctmpcc_default_configuration['theme'];
+                $configuration['theme'] = self::ctmpcc_default_configuration()['theme'];
             }
         }
 
