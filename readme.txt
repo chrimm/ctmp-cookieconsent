@@ -2,8 +2,8 @@
 Contributors: chrimm
 Tags: cookies, consent, eu, law, legal, notification, accept
 Requires at least: 4.4.1
-Tested up to: 4.4.1
-Stable tag: 4.4.1
+Tested up to: 4.4.2
+Stable tag: 4.4.2
 
 This plugin adds the Cookie Consent script to your WordPress site, to provide a cookie notification.
 
