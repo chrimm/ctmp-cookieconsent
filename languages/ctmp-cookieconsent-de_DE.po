@@ -149,6 +149,3 @@ msgstr "Christoffer T. Timm"
 #. Author URI of the plugin/theme
 msgid "http://christoffertimm.de"
 msgstr "http://christoffertimm.de"
-
-#~ msgid "Opt-out Expiry Date"
-#~ msgstr "Wie lange soll das Opt-Out gültig bleiben?"
