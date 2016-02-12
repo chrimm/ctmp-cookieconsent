@@ -23,6 +23,7 @@ This plugin adds the Cookie Consent script to your WordPress site, to provide a 
 
 == Changelog ==
 
+* 0.9.3: Added support for custom stylesheet
 * 0.9.2: Fixed activation hook
 * 0.9.1: Outsourced Class and fixed Uninstall script
 * 0.9.0: Public Beta Release

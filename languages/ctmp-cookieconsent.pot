@@ -1,154 +1,144 @@
+#, fuzzy
 msgid ""
 msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: CTMP Cookie Consent\n"
-"POT-Creation-Date: 2016-02-12 11:30+0100\n"
+"POT-Creation-Date: 2016-02-12 11:32+0100\n"
 "PO-Revision-Date: 2016-02-12 11:31+0100\n"
 "Last-Translator: Christoffer T. Timm <kontakt@christoffertimm.de>\n"
 "Language-Team: Christoffer T. Timm <kontakt@christoffertimm.de>\n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: ctmp-cookieconsent.php\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: CTMP_Cookie_Consent.class.php:35
 msgid "Got it!"
-msgstr "OK"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:38
 msgid ""
 "This website uses cookies to ensure you get the best experience on our "
 "website"
 msgstr ""
-"Diese Webseite verwendet Cookies, um das bestmögliche Besuchererlebnis "
-"bieten zu können. Mit der Nutzung dieser Webseite erklären Sie sich mit der "
-"Verwendung und Speicherung von Cookies einverstanden."
 
 #: CTMP_Cookie_Consent.class.php:39
 msgid "More info"
-msgstr "Weitere Informationen"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:122 CTMP_Cookie_Consent.class.php:123
 msgid "Cookie Consent"
-msgstr "Cookie Consent"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:142
 msgid "You can edit the display of the cookie notification to your liking"
 msgstr ""
-"Sie können die Darstellung des Cookie-Hinweises nach Ihren Wünschen "
-"gestalten"
 
 #: CTMP_Cookie_Consent.class.php:301
 msgid "Do not add any link"
-msgstr "Keinen Link anzeigen"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:330
 msgid "Same Page (_self)"
-msgstr "Gleiche Seite (_self)"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:331
 msgid "New Page (_blank)"
-msgstr "Neue Seite (_blank)"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:356
 msgid "Dark banner at the top"
-msgstr "Dunkler Banner am oberen Rand"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:357
 msgid "Dark banner at the bottom"
-msgstr "Dunkler Banner am unteren Rand"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:358
 msgid "Dark box floating in the lower right"
-msgstr "Dunkle, schwebende Box in der rechten unteren Ecke"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:359
 msgid "Light banner at the top"
-msgstr "Heller Banner am oberen Rand"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:360
 msgid "Light banner at the bottom"
-msgstr "Heller Banner am unteren Rand"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:361
 msgid "Light box floating in the lower right"
-msgstr "Helle, schwebende Box in der rechten unteren Ecke"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:362
 msgid "Use custom stylesheet"
-msgstr "Benutzerdefiniertes Theme"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:411
 msgid "Display Settings"
-msgstr "Einstellungen zur Darstellung"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:413
 msgid "Cookie Message"
-msgstr "Hinweisnachricht"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:414
 msgid "Dismiss Button Caption"
-msgstr "Beschriftung des Buttons"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:415
 msgid "Caption of the Learn More Link"
-msgstr "Beschriftung des Links für weitere Informationen"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:416
 msgid "Target Page of the Learn More Link"
-msgstr "Zielseite des Links"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:417
 msgid "Open Learn More Link in the Same or New Page?"
-msgstr "Wo soll die verlinkte Seite geöffnet werden?"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:418
 msgid "How to Display the Cookie Notification?"
-msgstr "Wie soll der Cookie Hinweis dargestellt werden?"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:420
 msgid "Advanced Settings"
-msgstr "Erweiterte Einstellungen"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:422
 msgid "(Sub-)Domain for Opt-out Scope"
-msgstr "(Sub-)Domain für das Opt-out"
+msgstr ""
 
 #: CTMP_Cookie_Consent.class.php:423
 msgid "Opt-out Expiry Days"
-msgstr "Wie lange soll das Opt-Out gültig bleiben?"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "CTMP Cookie Consent"
-msgstr "CTMP Cookie Consent"
+msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/chrimm/ctmp-cookieconsent"
-msgstr "https://github.com/chrimm/ctmp-cookieconsent"
+msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
 "Adds the Cookie Consent library to WordPress to provide Cookie notificatons."
 msgstr ""
-"Fügt die Cookie Consent Bibliothek zu WordPress hinzu, um Cookie Hinweise "
-"anzuzeigen"
 
 #. Author of the plugin/theme
 msgid "Christoffer T. Timm"
-msgstr "Christoffer T. Timm"
+msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "http://christoffertimm.de"
-msgstr "http://christoffertimm.de"
-
-#~ msgid "Opt-out Expiry Date"
-#~ msgstr "Wie lange soll das Opt-Out gültig bleiben?"
+msgstr ""

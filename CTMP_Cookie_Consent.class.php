@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'CTMPCC_OPTION_GROUP', 'ctmp-cookieconsent' );
 define( 'CTMPCC_OPTION_PREFIX', CTMPCC_OPTION_GROUP.'_' );
 define( 'CTMPCC_OPTION_FIELD_CALLBACK_PREFIX', 'ctmpcc_settings_page_field_callback_');
+define( 'CTMPCC_CUSTOM_STYLESHEET_LOCATION', '/plugins/ctmp-cookieconsent/ctmp-cookieconsent.css' );
 
 class CTMP_Cookie_Consent {
 
@@ -90,6 +91,18 @@ class CTMP_Cookie_Consent {
 		$configuration = self::ctmpcc_get_configuration();
 
 		$configuration['link'] = get_permalink( $configuration['link'] );
+
+        /*
+         * When custom theme is selected, check if stylesheet file exists.
+         * If not, use default theme.
+         */
+        if( configuration['theme'] == "__custom" ) {
+            if( file_exists(get_template_directory().CTMPCC_CUSTOM_STYLESHEET_LOCATION) ) {
+                configuration['theme'] = get_template_directory_uri().CTMPCC_CUSTOM_STYLESHEET_LOCATION;
+            } else {
+                configuration['theme'] = self::ctmpcc_default_configuration['theme'];
+            }
+        }
 
 		wp_enqueue_script( 'cookieconsent', 				COOKIE_CONSENT_PATH.'/cookieconsent.min.js', 	array(), 					COOKIE_CONSENT_VER,	$in_footer);
 		wp_enqueue_script( 'cookieconsent_configuration', 	plugins_url( 'js/configuration.js', __FILE__ ), array( 'cookieconsent' ), 	CTMPCC_VER, 		$in_footer);
@@ -345,8 +358,8 @@ class CTMP_Cookie_Consent {
 			'dark-floating'		=> __( 'Dark box floating in the lower right', 	'ctmp-cookieconsent' ),
 			'light-top'			=> __( 'Light banner at the top', 				'ctmp-cookieconsent' ),
 			'light-bottom'		=> __( 'Light banner at the bottom', 			'ctmp-cookieconsent' ),
-			'light-floating'	=> __( 'Light box floating in the lower right', 'ctmp-cookieconsent' )
-			//'custom'			=> __( 'Use custom stylesheet', 'ctmp-cookieconsent' ) -- not yet implemented...
+			'light-floating'	=> __( 'Light box floating in the lower right', 'ctmp-cookieconsent' ),
+			'__custom'			=> __( 'Use custom stylesheet',                 'ctmp-cookieconsent' )
 		);
 	}
 
