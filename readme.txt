@@ -3,7 +3,7 @@ Contributors: chrimm
 Tags: cookies, consent, eu, law, legal, notification, accept
 Requires at least: 4.4.1
 Tested up to: 4.4.2
-Stable tag: 0.9.4
+Stable tag: 0.9.5
 
 This plugin adds the Cookie Consent script to your WordPress site, to provide a cookie notification.
 
@@ -30,6 +30,7 @@ See https://codex.wordpress.org/Child_Themes for further information.
 
 == Changelog ==
 
+* 0.9.5: Fixed an incompatibility with PHP prior to 5.5 (issue #1)
 * 0.9.4: Fixed custom stylesheet example and language files
 * 0.9.3: Added support for custom stylesheet
 * 0.9.2: Fixed activation hook

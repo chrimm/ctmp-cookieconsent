@@ -89,7 +89,7 @@ class CTMP_Cookie_Consent {
 	public function ctmpcc_enqueue_scripts() {
 		$in_footer = true;
 		$configuration = self::ctmpcc_get_configuration();
-
+		$default_configuration = self::ctmpcc_default_configuration();
 		$configuration['link'] = get_permalink( $configuration['link'] );
 
         /*
@@ -100,7 +100,7 @@ class CTMP_Cookie_Consent {
             if( file_exists(get_template_directory().CTMPCC_CUSTOM_STYLESHEET_LOCATION) ) {
                 $configuration['theme'] = get_template_directory_uri().CTMPCC_CUSTOM_STYLESHEET_LOCATION;
             } else {
-                $configuration['theme'] = self::ctmpcc_default_configuration()['theme'];
+                $configuration['theme'] = $default_configuration['theme'];
             }
         }
 
@@ -241,7 +241,8 @@ class CTMP_Cookie_Consent {
 		/* Check whether the input value is a valid positive integer
 		 * if not, use the default value from the default values array.
 		 */
-		return (is_numeric($input) && ($input > 0)&& ($input < PHP_INT_MAX)) ? $input : self::ctmpcc_default_configuration()['expiryDays'];
+		$default_configuration = self::ctmpcc_default_configuration();
+		return (is_numeric($input) && ($input > 0)&& ($input < PHP_INT_MAX)) ? $input : $default_configuration['expiryDays'];
 	}
 
 	/**
@@ -341,7 +342,8 @@ class CTMP_Cookie_Consent {
 	 * @since 0.1.0
 	 */
 	function ctmpcc_settings_page_field_callback_target_sanitize($input) {
-		return (($input != '_self') && ($input != '_blank')) ? self::ctmpcc_default_configuration()['target'] : $input;
+		$default_configuration = self::ctmpcc_default_configuration();
+		return (($input != '_self') && ($input != '_blank')) ? $default_configuration['target'] : $input;
 	}
 
 	/**
@@ -393,7 +395,8 @@ class CTMP_Cookie_Consent {
 		/* Check whether the input value is in the list of available themes,
 		 * if not, use default value from default value array.
 		 */
-		return ( in_array( $input, array_keys( self::ctmpcc_get_available_themes() ) ) ) ? $input : self::ctmpcc_default_configuration()['theme'];
+		$default_configuration = self::ctmpcc_default_configuration();
+		return ( in_array( $input, array_keys( self::ctmpcc_get_available_themes() ) ) ) ? $input : $default_configuration['theme'];
 	}
 
 	/**

@@ -12,7 +12,7 @@
  * Plugin Name:       CTMP Cookie Consent
  * Plugin URI:        https://github.com/chrimm/ctmp-cookieconsent
  * Description:       Adds the Cookie Consent library to WordPress to provide Cookie notificatons.
- * Version:           0.9.4
+ * Version:           0.9.5
  * Author:            Christoffer T. Timm
  * Author URI:        http://christoffertimm.de
  * Text Domain:       ctmp-cookieconsent
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if( ! defined( 'CTMPCC_VER' ) ) {
-	define( 'CTMPCC_VER', '0.9.4' );
+	define( 'CTMPCC_VER', '0.9.5' );
 }
 
 if( ! defined( 'COOKIE_CONSENT_VER') ) {
